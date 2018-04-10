@@ -12283,6 +12283,16 @@
       "sig-apps"
     ]
   },
+  "pull-cloud-provider-azure-e2e": {
+    "args": [
+      "make",
+      "image"
+    ],
+    "scenario": "execute",
+    "sigOwners": [
+      "sig-azure"
+    ]
+  },
   "pull-cloud-provider-azure-lint": {
     "args": [
       "make",
