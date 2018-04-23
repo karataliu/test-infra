@@ -12286,7 +12286,7 @@
   "pull-cloud-provider-azure-e2e": {
     "args": [
       "make",
-      "image"
+      "e2e"
     ],
     "scenario": "execute",
     "sigOwners": [
