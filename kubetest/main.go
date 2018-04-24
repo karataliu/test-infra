@@ -34,6 +34,7 @@ import (
 	"time"
 
 	"k8s.io/test-infra/boskos/client"
+	"k8s.io/test-infra/kubetest/acsengine"
 	"k8s.io/test-infra/kubetest/conformance"
 	"k8s.io/test-infra/kubetest/dind"
 	"k8s.io/test-infra/kubetest/process"
@@ -237,6 +238,8 @@ type publisher interface {
 
 func getDeployer(o *options) (deployer, error) {
 	switch o.deployment {
+	case "acsengine":
+		return acsengine.NewDeployer(o.provider, o.cluster)
 	case "bash":
 		return newBash(&o.clusterIPRange), nil
 	case "conformance":
@@ -394,6 +397,8 @@ func complete(o *options) error {
 				if fedErr != nil || err != nil {
 					os.Exit(1)
 				}
+
+				os.Exit(0)
 			}
 		}()
 	}
