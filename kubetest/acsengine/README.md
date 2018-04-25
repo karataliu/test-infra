@@ -50,7 +50,7 @@ The final goal is:
 
 1. Support test run via prow
 
-## Kubetest acsengine Design
+## Kubetest acsengine deployment module design
 
 We already have a linux cluster workflow for running k8s E2E on Azure in [cloud-provider-azure](https://github.com/kubernetes/cloud-provider-azure/blob/master/docs/e2e-tests.md). It involves build and push image, call acs-engine, deploy cluster, and call kubetest to run tests. But after we have integrate acs-engine with kubetest, this could be simplified.
 
@@ -66,7 +66,8 @@ Note:
 
 
 For example:
-- linux_ccm
+- <details><summary>linux_ccm</summary>
+
     ```json
     {
         "apiVersion": "vlabs",
@@ -111,7 +112,10 @@ For example:
         }
     }
     ```
-- linux_large
+</details>
+
+- <details><summary>linux_large</summary>
+
     ```json
     {
         "apiVersion": "vlabs",
@@ -152,7 +156,10 @@ For example:
         }
     }
     ```
-- windows_basic
+</details>
+
+- <details><summary>windows_basic</summary>
+
     ```json
     {
         "apiVersion": "vlabs",
@@ -202,7 +209,7 @@ For example:
         }
     }
     ```
-
+</details>
 
 Following 
 ```
@@ -224,6 +231,6 @@ admin_password=
 
 An example run.
 ```
-kubetest --deployment=acsengine --provider=azure --acsengine-apimodel-template=linuxCcm --cluster=group-name --acsengine-apimodel-template-config=<path> --up --test --down --test_args='--ginkgo.focus="<testpattern>"'
+kubetest --deployment=acsengine --provider=azure --acsengine-apimodel-template=linux_ccm --cluster=group-name --acsengine-apimodel-template-config=<path> --up --test --down --test_args='--ginkgo.focus="<testpattern>"'
 ```
 
