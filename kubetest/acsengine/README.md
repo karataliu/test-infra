@@ -21,9 +21,9 @@
 
 
 ## Goal
-The final goal is:
+The final goal includes:
 
-1. Allows deploying cluster from source code (pull request/branch) to Azure, and running E2E test against the cluster
+1. Allow deploying cluster from source code (pull request/branch) to Azure, and running E2E test against the cluster
 
     The cluster would be deployed to Azure, so that a valid Azure credential is needed. The credential would contain things like 'tenant id', 'service principal id', 'service principal secert', etc.
 
@@ -42,11 +42,11 @@ The final goal is:
 
     Regarding kubetest, it is to support '--up', '--down' option. And this is what [PR76250](https://github.com/kubernetes/test-infra/pull/7625) targets
 
-1. Support uploading build artifacts to azure storage and azure container registry
+1. Support uploading staging build artifacts to azure storage and azure container registry
 
     Currently kubetest only supports uploading to GCS and GCR.
 
-    The artifacts in GCS is indeed public accessable, but when testing against 100+ nodes, it will cause all the nodes to download the same package from external network. Thus it's better to make the package accessable in a storage account in same Azure region. Same for the container image.
+    The staging artifacts in GCS is public accessable, but when testing against 100+ nodes, it will cause all the nodes to download the same package from external network. Thus it's better to make the package accessable in a storage account in same Azure region. Same for the container image.
 
 1. Support test run via prow
 
@@ -224,7 +224,7 @@ Proposed following new flags for kubetest
 --acsengine-apimodel-configs
 ```
 
-An example of config file
+An example of config file (will be used to fill in the template)
 ```
 tenant_id=
 client_id=
@@ -243,7 +243,7 @@ Existing example of calling [gcloud](https://github.com/kubernetes/test-infra/bl
 
 This has some advantages:
 
-- It is easyto  make use of variaous auth method az cli supports.
+- It is easy to  make use of variaous auth method az cli supports.
 
   A local develop can use the device token auth, while an auto CI run could use service principal auth.
 - It is easy to integrate with other azure cloud service.
@@ -267,3 +267,5 @@ kubetest --deployment=acsengine --provider=azure \
 ### Kubetest uploading artifacts to azure cloud
 TBD
 
+
+An ongoing implementation could be found [here](https://github.com/karataliu/test-infra/tree/azcl/kubetest/acsengine)
