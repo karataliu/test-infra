@@ -846,18 +846,18 @@
 			<title>Dynamic connector.35</title>
 			<desc>Windows package</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)"/>
-			<v:textRect cx="55.1566" cy="343.68" width="99.02" height="22.4037"/>
-			<path d="M0 363.88 L13.5 363.88 L13.5 349.68 L107.19 349.68" class="st9"/>
-			<rect v:rectContext="textBkgnd" x="11.0061" y="336.48" width="88.3012" height="14.4001" class="st10"/>
-			<text x="11.01" y="347.28" class="st4" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Windows package</text>		</g>
+			<v:textRect cx="61.1257" cy="350.415" width="99.02" height="22.4037"/>
+			<path d="M0 363.88 L107.26 350.86" class="st9"/>
+			<rect v:rectContext="textBkgnd" x="16.9752" y="343.216" width="88.3012" height="14.4001" class="st10"/>
+			<text x="16.98" y="354.02" class="st4" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Windows package</text>		</g>
 		<g id="shape36-118" v:mID="36" v:groupContext="shape" v:layerMember="1" transform="translate(360.375,-106.305)">
 			<title>Dynamic connector.36</title>
 			<desc>Windows package</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)"/>
-			<v:textRect cx="49.4747" cy="366.18" width="99.02" height="22.4037"/>
-			<path d="M0 367.68 L101.25 367.68 L101.25 381.88 L107.19 381.88" class="st9"/>
-			<rect v:rectContext="textBkgnd" x="5.32422" y="358.98" width="88.3012" height="14.4001" class="st10"/>
-			<text x="5.32" y="369.78" class="st4" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Windows package</text>		</g>
+			<v:textRect cx="44.302" cy="371.544" width="99.02" height="22.4037"/>
+			<path d="M0 367.68 L107.26 380.69" class="st9"/>
+			<rect v:rectContext="textBkgnd" x="0.151444" y="364.345" width="88.3012" height="14.4001" class="st10"/>
+			<text x="0.15" y="375.14" class="st4" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Windows package</text>		</g>
 		<g id="shape37-125" v:mID="37" v:groupContext="shape" transform="translate(256.875,-139.926)">
 			<title>Action.37</title>
 			<desc>Upload hyperkube/CCM image to ACR</desc>
@@ -912,19 +912,19 @@
 			<title>Dynamic connector.56</title>
 			<desc>Hyperkube/ccm Image</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)"/>
-			<v:textRect cx="47.8366" cy="387.105" width="102.32" height="20.0036"/>
-			<path d="M0 365.78 L13.5 365.78 L13.5 387.1 L117 387.1" class="st6"/>
-			<rect v:rectContext="textBkgnd" x="1.81083" y="381.105" width="92.0517" height="12.0001" class="st10"/>
-			<text x="1.81" y="390.11" class="st11" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Hyperkube/ccm Image</text>		</g>
-		<g id="shape57-169" v:mID="57" v:groupContext="shape" v:layerMember="1" transform="translate(360.375,-44.88)">
+			<v:textRect cx="58.5" cy="376.441" width="102.32" height="20.0036"/>
+			<path d="M0 365.78 L107.35 385.35" class="st9"/>
+			<rect v:rectContext="textBkgnd" x="12.4743" y="370.442" width="92.0517" height="12.0001" class="st10"/>
+			<text x="12.47" y="379.44" class="st11" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Hyperkube/ccm Image</text>		</g>
+		<g id="shape57-171" v:mID="57" v:groupContext="shape" v:layerMember="1" transform="translate(360.375,-44.88)">
 			<title>Dynamic connector.57</title>
 			<desc>Hyperkube/ccm Image</desc>
 			<v:textBlock v:margins="rect(4,4,4,4)"/>
-			<v:textRect cx="47.8366" cy="344.451" width="102.32" height="20.0036"/>
-			<path d="M0 365.78 L13.5 365.78 L13.5 344.45 L117 344.45" class="st6"/>
-			<rect v:rectContext="textBkgnd" x="1.81083" y="338.451" width="92.0517" height="12.0001" class="st10"/>
-			<text x="1.81" y="347.45" class="st11" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Hyperkube/ccm Image</text>		</g>
-		<g id="group17-174" transform="translate(486.375,-269.457)" v:mID="17" v:groupContext="group">
+			<v:textRect cx="58.5" cy="355.115" width="102.32" height="20.0036"/>
+			<path d="M0 365.78 L107.35 346.21" class="st9"/>
+			<rect v:rectContext="textBkgnd" x="12.4743" y="349.115" width="92.0517" height="12.0001" class="st10"/>
+			<text x="12.47" y="358.11" class="st11" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Hyperkube/ccm Image</text>		</g>
+		<g id="group17-178" transform="translate(486.375,-269.457)" v:mID="17" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Callout)"/>
@@ -941,7 +941,7 @@
 			</v:userDefs>
 			<title>Note</title>
 			<desc>Dowload kubernetes components from AS/ACR</desc>
-			<g id="shape17-175" v:mID="17" v:groupContext="groupContent">
+			<g id="shape17-179" v:mID="17" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(4,4,4,4)"/>
 				<v:textRect cx="36" cy="332.028" width="72" height="65.604"/>
 				<path d="M0 365.78 L72 365.78 L72 307.28 L63 298.28 L0 298.28 L0 365.78 Z" class="st5"/>
@@ -950,7 +950,7 @@
 				<text x="14.29" y="314.03" class="st4" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Dowload <tspan
 							x="8.41" dy="1.2em" class="st3">kubernetes </tspan><tspan x="5.54" dy="1.2em" class="st3">components </tspan><tspan
 							x="4.29" dy="1.2em" class="st3">from AS/ACR</tspan></text>			</g>
-			<g id="shape18-183" v:mID="18" v:groupContext="shape" transform="translate(63,-58.5)">
+			<g id="shape18-187" v:mID="18" v:groupContext="shape" transform="translate(63,-58.5)">
 				<title>Sheet.18</title>
 				<v:userDefs>
 					<v:ud v:nameU="FoldSize" v:prompt="" v:val="VT0(0.125):0"/>
@@ -958,7 +958,7 @@
 				<path d="M0 365.78 L9 365.78 L9 366.68 L9 365.78 L0 356.78 L-0.9 356.78 L0 356.78 L0 365.78 Z" class="st1"/>
 			</g>
 		</g>
-		<g id="group49-185" transform="translate(234.375,-294.903)" v:mID="49" v:groupContext="group">
+		<g id="group49-189" transform="translate(234.375,-294.903)" v:mID="49" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Callout)"/>
@@ -975,7 +975,7 @@
 			</v:userDefs>
 			<title>Note.49</title>
 			<desc>AS: Azure Storage ACR: Azure Container Registry CCM: Cloud co...</desc>
-			<g id="shape49-186" v:mID="49" v:groupContext="groupContent">
+			<g id="shape49-190" v:mID="49" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(4,4,4,4)"/>
 				<v:textRect cx="78.75" cy="343.278" width="157.51" height="44.0037"/>
 				<path d="M0 365.78 L157.5 365.78 L157.5 329.78 L148.5 320.78 L0 320.78 L0 365.78 Z" class="st5"/>
@@ -984,7 +984,7 @@
 				<text x="4" y="334.28" class="st11" v:langID="1033"><v:paragraph/><v:tabList/>AS: Azure Storage<v:newlineChar/><tspan
 							x="4" dy="1.2em" class="st3">ACR: Azure Container Registry<v:newlineChar/></tspan><tspan x="4"
 							dy="1.2em" class="st3">CCM: Cloud controller manager</tspan></text>			</g>
-			<g id="shape50-193" v:mID="50" v:groupContext="shape" transform="translate(148.5,-36)">
+			<g id="shape50-197" v:mID="50" v:groupContext="shape" transform="translate(148.5,-36)">
 				<title>Sheet.50</title>
 				<v:userDefs>
 					<v:ud v:nameU="FoldSize" v:prompt="" v:val="VT0(0.125):0"/>

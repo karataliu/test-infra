@@ -1,8 +1,8 @@
-# Acs-engine based kubernetes test design
+# Acs-engine based kubernetes E2E design draft
 
-## Pipeline Summary
+## Test Pipeline
 
-1. Existing pipline
+1. Existing pipline (GCE, AWS)
 
     ![existing](artifacts/1.svg)
 
@@ -50,5 +50,180 @@ The final goal is:
 
 1. Support test run via prow
 
-    Requires communication with CNCF/prow owners for how to pass crentials.
+## Kubetest acsengine Design
+
+We already have a linux cluster workflow for running k8s E2E on Azure in [cloud-provider-azure](https://github.com/kubernetes/cloud-provider-azure/blob/master/docs/e2e-tests.md). It involves build and push image, call acs-engine, deploy cluster, and call kubetest to run tests. But after we have integrate acs-engine with kubetest, this could be simplified.
+
+
+Acs-engine use [apimodel](https://github.com/Azure/acs-engine/blob/master/docs/clusterdefinition.md) to define a cluster, which has a lot of configurations.
+
+For running test, we would support several basic configurations as prototypes, in this case we can provide some built-in template. And leave the credentials as template parameters.
+
+
+Note:
+
+[kubeBinariesSASURL](https://github.com/Azure/acs-engine/blob/c8654c3b874c15462e25babc7a8e25c2e748d75e/pkg/acsengine/engine.go#L845) is not overridable yet via apimodel. Should add a custom property, here use `WindowsPackageSASURLBase` as example.
+
+
+For example:
+- linux_ccm
+    ```json
+    {
+        "apiVersion": "vlabs",
+        "location": "{{.location}}",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorRelease": "1.10",
+                "kubernetesConfig": {
+                    "useCloudControllerManager": true,
+                    "customCcmImage": "{{.customCcmImage}}"
+                }
+            },
+            "masterProfile": {
+                "count": 1,
+                "vmSize": "Standard_F2",
+                "dnsPrefix": "{{.dnsPrefix}}"
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "agentpool1",
+                    "count": 2,
+                    "vmSize": "Standard_F2",
+                    "availabilityProfile": "AvailabilitySet",
+                    "storageProfile": "ManagedDisks"
+                }
+            ],
+            "linuxProfile": {
+                "adminUsername": "k8s-ci",
+                "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "{{.keyData}}"
+                        }
+                    ]
+                }
+            },
+            "servicePrincipalProfile": {
+                "clientID": "{{.clientID}}",
+                "secret": "{{.secret}}"
+            }
+        }
+    }
+    ```
+- linux_large
+    ```json
+    {
+        "apiVersion": "vlabs",
+        "location": "{{.location}}",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorRelease": "1.10"
+            },
+            "masterProfile": {
+                "count": 5,
+                "vmSize": "Standard_F2",
+                "dnsPrefix": "{{.dnsPrefix}}"
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "agentpool1",
+                    "count": 100,
+                    "vmSize": "Standard_F2",
+                    "availabilityProfile": "AvailabilitySet",
+                    "storageProfile": "ManagedDisks"
+                }
+            ],
+            "linuxProfile": {
+                "adminUsername": "k8s-ci",
+                "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "{{.keyData}}"
+                        }
+                    ]
+                }
+            },
+            "servicePrincipalProfile": {
+                "clientID": "{{.clientID}}",
+                "secret": "{{.secret}}"
+            }
+        }
+    }
+    ```
+- windows_basic
+    ```json
+    {
+        "apiVersion": "vlabs",
+        "location": "{{.location}}",
+        "properties": {
+            "orchestratorProfile": {
+                "orchestratorType": "Kubernetes",
+                "orchestratorRelease": "1.9",
+                "kubernetesConfig": {
+                    "useCloudControllerManager": true,
+                    "WindowsPackageSASURLBase": "{{.winzipbase}}"
+                }
+            },
+            "masterProfile": {
+                "count": 1,
+                "vmSize": "Standard_F2",
+                "dnsPrefix": "{{.dnsPrefix}}"
+            },
+            "agentPoolProfiles": [
+                {
+                    "name": "agentpool1",
+                    "count": 2,
+                    "vmSize": "Standard_F2",
+                    "availabilityProfile": "AvailabilitySet",
+                    "storageProfile": "ManagedDisks",
+                    "osType": "Windows"
+                }
+            ],
+            "windowsProfile": {
+                "adminUsername": "k8s-ci",
+                "adminPassword": "{{.adminPassword}}"
+            },
+            "linuxProfile": {
+                "adminUsername": "k8s-ci",
+                "ssh": {
+                    "publicKeys": [
+                        {
+                            "keyData": "{{.keyData}}"
+                        }
+                    ]
+                }
+            },
+            "servicePrincipalProfile": {
+                "clientID": "{{.clientID}}",
+                "secret": "{{.secret}}"
+            }
+        }
+    }
+    ```
+
+
+Following 
+```
+--acsengine-location
+--acsengine-apimodel-template
+--acsengine-apimodel-template-config
+```
+
+Example of config file
+```
+tenant_id=
+client_id=
+client_secret=
+ssh_public_key=
+# For windows
+admin_password=
+```
+
+
+An example run.
+```
+kubetest --deployment=acsengine --provider=azure --acsengine-apimodel-template=linuxCcm --cluster=group-name --acsengine-apimodel-template-config=<path> --up --test --down --test_args='--ginkgo.focus="<testpattern>"'
+```
 
