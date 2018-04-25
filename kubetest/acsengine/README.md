@@ -52,9 +52,10 @@ The final goal is:
 
 ## Kubetest acsengine deployment module design
 
+### Overview
 We already have a linux cluster workflow for running k8s E2E on Azure in [cloud-provider-azure](https://github.com/kubernetes/cloud-provider-azure/blob/master/docs/e2e-tests.md). It involves build and push image, call acs-engine, deploy cluster, and call kubetest to run tests. But after we have integrate acs-engine with kubetest, this could be simplified.
 
-
+### Template based apimodel
 Acs-engine use [apimodel](https://github.com/Azure/acs-engine/blob/master/docs/clusterdefinition.md) to define a cluster, which has a lot of configurations.
 
 For running test, we would support several basic configurations as prototypes, in this case we can provide some built-in template. And leave the credentials as template parameters.
@@ -65,8 +66,8 @@ Note:
 [kubeBinariesSASURL](https://github.com/Azure/acs-engine/blob/c8654c3b874c15462e25babc7a8e25c2e748d75e/pkg/acsengine/engine.go#L845) is not overridable yet via apimodel. Should add a custom property, here use `WindowsPackageSASURLBase` as example.
 
 
-For example:
-- <details><summary>linux_ccm</summary>
+For example (click to expand):
+- <details><summary>linux_ccm (2 nodes)</summary>
 
     ```json
     {
@@ -114,7 +115,7 @@ For example:
     ```
 </details>
 
-- <details><summary>linux_large</summary>
+- <details><summary>linux_large (100 nodes)</summary>
 
     ```json
     {
@@ -211,14 +212,19 @@ For example:
     ```
 </details>
 
-Following 
+### Kubetest calling acs-engine for creating cluster design
+
+Proposed following new flags for kubetest
 ```
---acsengine-location
+# template name
 --acsengine-apimodel-template
---acsengine-apimodel-template-config
+# static configs read from file, usually credentials
+--acsengine-apimodel-config-file
+# dynamic key value pairs from command line, such as location, hyperkube image location
+--acsengine-apimodel-configs
 ```
 
-Example of config file
+An example of config file
 ```
 tenant_id=
 client_id=
@@ -228,9 +234,17 @@ ssh_public_key=
 admin_password=
 ```
 
+An example of execution:
+```
+kubetest --deployment=acsengine --provider=azure \
+  --cluster=<resource-group-name> \
+  --acsengine-apimodel-template=linux_ccm \
+  --acsengine-apimodel-config-file=<path> \
+  --acsengine-apimodel-configs='location=westus2,hyperkube_image=some.io/hyperkube:111' \
+  --up --test --down --test_args='--ginkgo.focus="<testpattern>"'
+```
 
-An example run.
-```
-kubetest --deployment=acsengine --provider=azure --acsengine-apimodel-template=linux_ccm --cluster=group-name --acsengine-apimodel-template-config=<path> --up --test --down --test_args='--ginkgo.focus="<testpattern>"'
-```
+
+### Kubetest uploading artifacts to azure cloud design
+TBD
 
