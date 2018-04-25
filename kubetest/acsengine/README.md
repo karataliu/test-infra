@@ -20,8 +20,8 @@
     In this case, the previous flow cannot statisfy here.
 
 
-## Goal
-The final goal includes:
+## Goals
+The final goals include:
 
 1. Allow deploying cluster from source code (pull request/branch) to Azure, and running E2E test against the cluster
 
@@ -236,7 +236,7 @@ admin_password=
 
 ### kubetest calling az cli for deploying ARM template
 
-Instead of call ARM apis in kubetest, it should call 'az' cli to doe deployment.
+Instead of call ARM apis in kubetest, it could call [az cli](https://github.com/Azure/azure-cli) to do deployment.
 
 Existing example of calling [gcloud](https://github.com/kubernetes/test-infra/blob/master/kubetest/gke.go#L341) and [kops](https://github.com/kubernetes/test-infra/blob/master/kubetest/kops.go#L404).
 
