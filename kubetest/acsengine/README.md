@@ -44,7 +44,7 @@ The final goal is:
 
 1. Support uploading build artifacts to azure storage and azure container registry
 
-    Currently kubetest only supports uploading to GCS and GCR. We need to get it support as/acr.
+    Currently kubetest only supports uploading to GCS and GCR.
 
     The artifacts in GCS is indeed public accessable, but when testing against 100+ nodes, it will cause all the nodes to download the same package from external network. Thus it's better to make the package accessable in a storage account in same Azure region. Same for the container image.
 
@@ -212,7 +212,7 @@ For example (click to expand):
     ```
 </details>
 
-### Kubetest calling acs-engine for creating cluster design
+### Kubetest calling acs-engine for creating cluster ARM template
 
 Proposed following new flags for kubetest
 ```
@@ -234,7 +234,27 @@ ssh_public_key=
 admin_password=
 ```
 
-An example of execution:
+### kubetest calling az cli for deploying ARM template
+
+Instead of call ARM apis in kubetest, it should call 'az' cli to doe deployment.
+
+Existing example of calling [gcloud](https://github.com/kubernetes/test-infra/blob/master/kubetest/gke.go#L341) and [kops](https://github.com/kubernetes/test-infra/blob/master/kubetest/kops.go#L404).
+
+
+This has some advantages:
+
+- It is easyto  make use of variaous auth method az cli supports.
+
+  A local develop can use the device token auth, while an auto CI run could use service principal auth.
+- It is easy to integrate with other azure cloud service.
+
+  For example, if we are to upload image to acr, az cli could help do the docker auth
+
+
+
+TBD: Find ways for initial 'az login', using environment variable?
+
+An example of final execution:
 ```
 kubetest --deployment=acsengine --provider=azure \
   --cluster=<resource-group-name> \
@@ -244,7 +264,6 @@ kubetest --deployment=acsengine --provider=azure \
   --up --test --down --test_args='--ginkgo.focus="<testpattern>"'
 ```
 
-
-### Kubetest uploading artifacts to azure cloud design
+### Kubetest uploading artifacts to azure cloud
 TBD
 
