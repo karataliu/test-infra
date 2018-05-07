@@ -12283,10 +12283,11 @@
       "sig-apps"
     ]
   },
-  "pull-cloud-provider-azure-e2e": {
+  "pull-cloud-provider-azure-e2e-default": {
     "args": [
       "make",
-      "e2e"
+      "e2e",
+      "SUITE=smoke"
     ],
     "scenario": "execute",
     "sigOwners": [
