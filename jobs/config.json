@@ -12286,8 +12286,8 @@
   "pull-cloud-provider-azure-e2e-default": {
     "args": [
       "make",
-      "e2e",
-      "SUITE=smoke"
+      "test-e2e",
+      "SUITE=default"
     ],
     "scenario": "execute",
     "sigOwners": [
